@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Demo</title>
+  <script src="lib/vue.js"></script>
+  <script src="js/components.js"></script>
+  <script src="js/index.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <span>{{name}}</span>
+    <input type="button" :value="name" @click="clickme">
+    <my-component :prop1="test"></my-component>
+
+  </div>
+
+</body>
+
+</html>
