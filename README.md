@@ -17,9 +17,10 @@
 
 ### VueCli开发方式
 > 基于nodejs构建工具webpack的官方脚手架解决方案，提供了更舒适高效的开发方式
-> 1. 轻松的依赖管理
-> 2. 样式私有化解决方案
-> 3. 热更新
+1. 轻松的依赖管理
+2. 样式私有化解决方案
+3. 热更新
+4. webpack提供的 样式预处理、js转码、文件压缩、项目打包 的功能
 
 ### Vue开发中的常见使用
 
@@ -34,7 +35,7 @@
 1. Vue-Router 路由组件
 2. Vuex 全局状态管理器
 3. axios http请求解决方案
-4. elementUi ant-design 
-5. *keepAlive 可以将组建缓存起来，重新加载时可以读取历史数据
+4. 一些第三方组件库 elementUi ant-design
+5. *keepAlive 可以将组件缓存起来，重新加载时可以读取历史数据
 6. *transition 一种渐变动画组件
    
