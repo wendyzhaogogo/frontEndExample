@@ -20,7 +20,7 @@
 1. 轻松的依赖管理
 2. 样式私有化解决方案
 3. 热更新
-4. webpack提供的 样式预处理、js转码、文件压缩、项目打包 的功能
+4. webpack提供了 样式预处理、js转码、文件压缩、项目打包 的功能
 
 ### Vue开发中的常见使用
 
@@ -28,7 +28,8 @@
 2. v-for
 3. v-model
 4. class style 的动态绑定
-5. 父子组件通讯 $emit :prop
+5. watch computed mixin
+6. 父子组件通讯 $emit :prop
     
 ### Vue中的常用组件
 

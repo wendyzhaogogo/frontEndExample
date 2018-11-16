@@ -10,11 +10,17 @@
   <script src="js/components.js"></script>
   <script src="js/index.js"></script>
 </head>
+<style>
+  .classa{
+
+  }
+</style>
 
 <body>
   <div id="app">
     <span>{{name}}</span>
-    <input type="button" :value="name" @click="clickme">
+    <input type="button" value="点我" @click="clickme()">
+
     <my-component :prop1="test"></my-component>
 
   </div>

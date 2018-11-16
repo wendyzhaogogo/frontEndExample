@@ -11,6 +11,9 @@ window.onload = function () {
       clickme () {
         this.name += 1
         alert("我被点击啦")
+      },
+      classs(){
+
       }
     }
   })

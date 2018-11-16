@@ -1,6 +1,9 @@
 // https://eslint.org/docs/user-guide/configuring
 
 module.exports = {
+  "settings": {
+    "import/resolver": "webpack"
+  },
   root: true,
   parserOptions: {
     parser: 'babel-eslint'
