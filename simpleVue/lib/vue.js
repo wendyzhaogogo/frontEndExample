@@ -2837,7 +2837,7 @@ function updateChildComponent (
   // used them during render
   vm.$attrs = parentVnode.data.attrs || emptyObject;
   vm.$listeners = listeners || emptyObject;
-
+  debugger
   // update props
   if (propsData && vm.$options.props) {
     toggleObserving(false);
@@ -3202,8 +3202,10 @@ Watcher.prototype.update = function update () {
   if (this.lazy) {
     this.dirty = true;
   } else if (this.sync) {
+    debugger
     this.run();
   } else {
+    debugger
     queueWatcher(this);
   }
 };
@@ -3317,6 +3319,7 @@ function initState (vm) {
 }
 
 function initProps (vm, propsOptions) {
+  debugger
   var propsData = vm.$options.propsData || {};
   var props = vm._props = {};
   // cache prop keys so that future props updates can iterate using Array
@@ -4316,7 +4319,8 @@ function installComponentHooks (data) {
 // prop and event handler respectively.
 function transformModel (options, data) {
   var prop = (options.model && options.model.prop) || 'value';
-  var event = (options.model && options.model.event) || 'input';(data.props || (data.props = {}))[prop] = data.model.value;
+  var event = (options.model && options.model.event) || 'input';
+  (data.props || (data.props = {}))[prop] = data.model.value;
   var on = data.on || (data.on = {});
   if (isDef(on[event])) {
     on[event] = [data.model.callback].concat(on[event]);
