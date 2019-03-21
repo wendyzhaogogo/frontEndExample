@@ -410,7 +410,7 @@
     // 复杂表达式已经移入一个计算属性
     computed: {
       normalizedFullName: function () {
-        returnthis.fullName.split(' ').map(function (word) {
+        return this.fullName.split(' ').map(function (word) {
           return word[0].toUpperCase() + word.slice(1)
         }).join(' ')
       }
