@@ -6438,6 +6438,7 @@ var klass = {
 var validDivisionCharRE = /[\w).+\-_$\]]/;
 
 function parseFilters (exp) {
+  debugger
   var inSingle = false;
   var inDouble = false;
   var inTemplateString = false;
