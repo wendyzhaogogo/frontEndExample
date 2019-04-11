@@ -1,9 +1,10 @@
 Vue.component('myComponent', {
   template:
     "<div :style='myclass'>" +
-      "<div>{{prop1}}</div>" +
-      "<div>{{myclass}}</div>" +
-    "</div>",
+    "<div>{{prop1}}</div>" +
+    "<div>{{myclass}}</div>" +
+    "</div>"+
+    "<button @click='clickme'> clickmeinnner</button>",
   props: ['prop1'],
   data () {
     return {
@@ -12,5 +13,25 @@ Vue.component('myComponent', {
         backgroundColor: 'pink'
       }
     }
+  },
+  mounted () {
+    this.$watch(function () {
+      return this.prop1.value
+    }, function (val, old) {
+      console.log('prop1.value from ', old, ' to ', val)
+    })
+  },
+  methods: {
+    clickme () {
+      let _this = this
+      // console.log(this)
+
+      this.prop1.value += 1
+      this.$nextTick(function () {
+        console.log('nexttick')
+      })
+
+      // alert("我被点击啦")
+    },
   }
 })

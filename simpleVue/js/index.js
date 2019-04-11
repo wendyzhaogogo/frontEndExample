@@ -3,23 +3,33 @@ window.onload = function () {
     el: '#app',
     data () {
       return {
-        name: 1,
+        name: {
+          value: 1
+        },
         test: "test",
         eee: {
-          
+
         }
       }
     },
-    mounted:function(){
+    mounted: function () {
+      let _this = this
       this.eee.a = 2
+
     },
     methods: {
       clickme () {
-        console.log(this)
-        this.name += 1
-        alert("我被点击啦")
+        let _this = this
+        // console.log(this)
+
+        this.name.value += 1
+        this.$nextTick(function () {
+          console.log('nexttick')
+        })
+
+        // alert("我被点击啦")
       },
-     
+
     }
   })
 }
