@@ -3,8 +3,9 @@ Vue.component('myComponent', {
     "<div :style='myclass'>" +
     "<div>{{prop1}}</div>" +
     "<div>{{myclass}}</div>" +
+    "<button @click='clickme'> clickmeinnner</button>"+
     "</div>"+
-    "<button @click='clickme'> clickmeinnner</button>",
+    "",
   props: ['prop1'],
   data () {
     return {
