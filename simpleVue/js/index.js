@@ -4,7 +4,8 @@ window.onload = function () {
     data () {
       return {
         name: {
-          value: 1
+          value: 1,
+          value2: 0
         },
         test: "test",
         eee: {
@@ -30,6 +31,14 @@ window.onload = function () {
         // alert("我被点击啦")
       },
 
+    },
+    watch: {
+      value () {
+        this.value2 += 1
+      },
+      value2 () {
+        this.value += 1
+      }
     }
   })
 }

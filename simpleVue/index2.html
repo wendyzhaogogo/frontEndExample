@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Demo</title>
+  <script src="lib/vue.js"></script>
+  <script src="https://cdn.bootcss.com/element-ui/2.6.1/index.js"></script>
+
+</head>
+<style>
+  .classa {}
+</style>
+
+<body>
+  <div id="app">
+    <!-- <span>{{name}}</span> -->
+    <input type="button" value="点我" @click="clickme()">
+
+
+  </div>
+  <script>
+    window.onload = function () {
+      new Vue({
+        el: '#app',
+        data() {
+          return {
+
+            value: 1,
+            value2: 0
+
+          }
+        },
+
+        methods: {
+          clickme() {
+
+            this.value += 1
+
+          },
+
+        },
+        watch: {
+          //互相依赖示例
+          value() {
+            console.log('value ', this.value)
+            this.value2 += 1
+          },
+          value2() {
+            console.log('value2 ', this.value2)
+            this.value += 1
+          }
+        }
+      })
+    }
+  </script>
+</body>
+
+</html>
