@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>div被内部元素撑开</title>
+</head>
+
+<body>
+  <p>100%设置的元素不可以被内部元素撑开但是flex可以</p>
+
+  <div class="grandpa">
+    <div class="container">
+      我被撑开  flex
+      <div class="inner">
+       
+      </div>
+    </div>
+  </div>
+  <p>100%设置的元素不可以被内部元素撑开但是flex可以</p>
+  <div class="grandpa">
+    <div class="container2">
+      我不被撑开 100%
+      <div class="inner">
+        
+      </div>
+    </div>
+  </div>
+
+
+</body>
+<style>
+  .grandpa {
+    background-color: red;
+    height: 200px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 200px;
+  }
+
+  .container {
+    flex: 1;
+
+    width: 150px;
+    background-color: grey;
+  }
+
+  .container2 {
+    height: 100%;
+
+    width: 150px;
+    background-color: grey;
+  }
+
+  .inner {
+    height: 300px;
+    width: 100px;
+    background-color: lightblue;
+  }
+</style>
+
+</html>
