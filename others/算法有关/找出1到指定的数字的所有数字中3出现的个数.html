@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+
+<body>
+
+    <!-- <script>
+        var a = 707829217
+        var i = 1
+        for (i = 1; i < a; i += 2) {
+            var tp = a / i
+            if (tp === parseInt(tp)) {
+                console.log(tp)
+            }
+        }
+    </script> -->
+    <script>
+        function parseStrToInt(str) {
+            return str ? parseInt(str) : 0
+        }
+
+
+        var a = 65783
+
+        //  暴力循环
+        var i = 1
+        var sum1 = 0
+        for (i = 1; i <= a; i += 1) {
+            var tmp = i.toString()
+            for (key in tmp) {
+                if (tmp[key] == "3") {
+                    sum1 += 1
+                    // console.log(i)
+                }
+            }
+        }
+        console.log('暴力算出的数字' + sum1)
+
+
+        // 求数公式
+        var sum2 = 0
+
+        var initNumStrArr = a.toString().split('')
+        for (key = 0; key < initNumStrArr.length; key++) {
+
+            var bakArr = initNumStrArr.slice() //备份一个数组
+
+            //遍历每个数位，取出对应的数字
+            var num = parseInt(bakArr.slice(key, key + 1))
+
+            var leftUnion = bakArr.slice(0, key) //左边剩下的数字组成的新数字
+            var rightUnion = bakArr.slice(key + 1) //右边剩下的数字组成的新数组
+
+            var unionNum = parseStrToInt(leftUnion.join('').toString() + rightUnion.join('').toString())
+            var rightNum = parseStrToInt(rightUnion.join(''))
+            var leftNum = parseStrToInt(leftUnion.join(''))
+
+
+            if (num < 3) {
+                sum2 += (leftNum) * Math.pow(10, rightUnion.length)
+
+            }
+            else if (num === 3) {
+                sum2 += unionNum + 1
+            }
+            else {
+
+                sum2 += (leftNum + 1) * Math.pow(10, rightUnion.length)
+            }
+
+
+
+
+        }
+        console.log('公式算出的数字' + sum2)
+
+    </script>
+
+
+</body>
+
+</html>
