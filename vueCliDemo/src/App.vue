@@ -6,8 +6,15 @@
 </template>
 
 <script>
+import test from "./test";
+console.log('app beforeexport')
+console.log(test.a())
+
 export default {
-  name: 'App'
+  name: 'App',
+  mounted(){
+    console.log(test.a())
+  }
 }
 </script>
 
