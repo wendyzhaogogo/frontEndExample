@@ -11,6 +11,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "element-ui": "^2.8.2",
     "linqjs": "^1.0.1",
     "socket.io-client": "^2.2.0",
     "vue": "^2.5.2",
