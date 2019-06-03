@@ -5,6 +5,7 @@ import App from './App'
 import router from './router'
 import  'linqjs'
 import element from "element-ui";
+import '@/styles/index.scss'
 
 Vue.config.productionTip = false
 Vue.use(element)

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script type="text/javascript" src="lib/moxie.js"></script>
+  <script type="text/javascript" src="lib/plupload.dev.js"></script>
+  <script type="text/javascript" src="lib/ks3jssdk.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="utp2">start-upload</button>
+  <input id="selectFile" type="file"></input>
+  <div id="div" style="background-color: red;height: 100px;width: 100px;"></div>
+  <script>
+    document.getElementById('utp2').onclick = function () {
+      var file = document.getElementById('selectFile').files[0]; //获取文件对象
+      var objKey = Ks3.encodeKey(file.name);
+      var contentType = file.type;
+
+      Ks3.putObject({
+        Key: objKey,
+        File: file,
+        ACL: 'public-read',
+        ProgressListener: progressFunction,
+        Sinature: '',
+        Bucket:'hehe'
+      }, function (err) {
+        if (err) {
+          alert(JSON.stringify(err));
+        } else {
+          alert('put上传成功');
+        }
+      });
+
+      function progressFunction(e) {
+        var progressBar = document.getElementById("progressBar2");
+        if (e.lengthComputable) {
+          progressBar.max = e.total;
+          progressBar.value = e.loaded;
+        }
+      }
+
+    };
+
+  </script>
+</body>
+
+</html>

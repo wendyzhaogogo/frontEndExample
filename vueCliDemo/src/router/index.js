@@ -4,6 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import test from '@/components/test.vue'
 import sockettest from "@/components/sockettest";
 import tabletest from "@/tabletest";
+import markdowntest from "@/view/markdowntest";
 Vue.use(Router)
 
 export default new Router({
@@ -20,6 +21,10 @@ export default new Router({
       path: '/tabletest',
       name: 'tabletest',
       component: tabletest
+    },{
+      path: '/markdowntest',
+      name: 'markdowntest',
+      component: markdowntest
     }
   ]
 })

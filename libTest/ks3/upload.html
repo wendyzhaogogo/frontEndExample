@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script type="text/javascript" src="lib/moxie.js"></script>
+  <script type="text/javascript" src="lib/plupload.dev.js"></script>
+  <script type="text/javascript" src="lib/ks3jssdk.js"></script>
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="start-upload">start-upload</button>
+  <input id="selectFile" type="file"></input>
+  <div id="div" style="background-color: red;height: 100px;width: 100px;"></div>
+  <script>
+    // function selectFiles() {
+    //   return new Promise((resolve, reject) => {
+    //     let fileinput = document.createElement('input')
+    //     fileinput.type = 'file'
+    //     fileinput.onchange = function ({ currentTarget: { files } }) {
+    //       resolve(files)
+    //     }
+    //     fileinput.click()
+    //   })
+    // }
+
+    var ks3Options = {
+      KSSAccessKeyId: "Your KSSAccessKeyId",
+      policy: "Your policy",
+      signature: "Your signature",
+      bucket_name: "Your bucket name",
+      key: '${filename}',
+      uploadDomain: "http://kss.ksyun.com/destination", //杭州region
+      autoStart: true
+    };
+    var pluploadOptions = {
+      drop_element: document.getElementById('div'),
+      container: document.getElementById('div'),
+      browse_button: document.getElementById('div')
+
+    };
+    var tempUpload = new ks3FileUploader(ks3Options, pluploadOptions);
+    tempUpload.uploader.set
+    document.getElementById('start-upload').onclick = function () {
+      tempUpload.uploader.addFile(document.getElementById('selectFile').files[0], 'tsetfile')
+      tempUpload.uploader.start()
+    };</script>
+</body>
+
+</html>
