@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <form id='form' class="form">
+    <div class="form-item">
+      <label for="">姓名</label>
+      <input required name='name' type="text" />
+    </div>
+    <div class="form-item">
+      <label for="">年龄</label>
+      <input name='age' required type="number" maxlength="3" />
+    </div>
+    <div class="form-item">
+      <label for="">手机</label>
+      <input name='mobile' required type="number" maxlength="11" />
+    </div>
+    <div class="form-item">
+      <label for="">邮箱</label>
+      <input name='email' required type="email" />
+    </div>
+    <div class="form-item">
+      <label for="">内容</label>
+      <textarea name='content' required rows="2"></textarea>
+    </div>
+  </form>
+  <input type="button" onclick="submit()" value="点我提交">
+  <script>
+
+
+    function submit() {
+      var form = document.getElementById('form')
+      if (!form.reportValidity()) {
+        return
+      }
+      let obj = {}
+      for (let index = 0; index < form.children.length; index++) {
+        const node = form.children[index];
+        obj[node.children[1].name] = node.children[1].value
+      }
+      console.log(obj)
+    }
+
+
+  </script>
+
+  <style>
+    .form {
+      width: 500px;
+    }
+
+    .form-item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 60px;
+      margin-bottom: 10px;
+    }
+
+    .form-item>input,
+    .form-item>textarea {
+      height: 100%;
+      /* width: 0px; */
+      flex: 1;
+
+    }
+
+    .form-item label {
+      height: 100%;
+      width: 150px;
+      flex: none;
+    }
+  </style>
+</body>
+
+</html>

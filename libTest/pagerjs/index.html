@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.10.2/paper-full.js"></script>
+  <canvas id="myCanvas" resize></canvas>
+  <script>
+    paper.install(window);
+    window.onload = function () {
+      var canvas = document.getElementById('myCanvas');
+      paper.setup(canvas);
+      var shapesLayer = new paper.Layer();
+      var path;
+      var point, length;
+      var tool = new paper.Tool();
+      tool.minDistance = 10;
+      tool.onMouseDown = function (event) {
+        point = event.point;
+        length = shapesLayer.children.length;
+
+        console.log(point,length)
+      };
+      tool.onMouseDrag = function (event) {
+        var topLeft = new paper.Point(point);
+        var rectSize = new paper.Size((event.point.x - point.x), (event.point.y - point.y));
+        var rect = new paper.Rectangle(topLeft, rectSize);
+        var path = new paper.Path.Rectangle(rect, 0);
+        path.strokeColor = 'black';
+        /* path.dashArray = [5, 1];*/
+        if (shapesLayer.children.length >= (length + 2) && shapesLayer.children.length >= 2) {
+          console.log(shapesLayer.children)
+          shapesLayer.removeChildren(shapesLayer.children.length - 2, shapesLayer.children.length - 1);
+        }
+      };
+
+    }
+  </script>
+</body>
+
+</html>

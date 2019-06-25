@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- USE DEVELOPMENT VERSION -->
+  <script src="https://unpkg.com/konva@3.3.3/konva.js"></script>
+  <meta charset="utf-8" />
+  <title>Konva Transform Events Demo</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #f0f0f0;
+    }
+
+    #container canvas {
+      background-color: lightcyan;
+    }
+  </style>
+</head>
+
+<body>
+  <button id="btn">点我呀亲，我会rotate</button>
+  <button id="scale">点我呀亲，我会scale layer</button>
+  <button id="drawRect">画框</button>
+  <button onclick="alog()">log</button>
+  <div id="container"></div>
+  <script>
+    let yoda
+    document.getElementById('drawRect').addEventListener('click', function () {
+      drawRect.startDrawOne()
+    })
+    document.getElementById('btn').addEventListener('click', function () {
+      debugger
+      rect.rotate(Math.PI * 0.5)
+      updateText()
+      layer.draw()
+    })
+
+    document.getElementById('scale').addEventListener('click', function () {
+      debugger
+      // stage.scale({ x: 2, y: 2 })
+      stage.rotate(45)
+      stage.draw()
+    })
+
+    var width = window.innerWidth;
+    var height = window.innerHeight;
+
+    var stage = new Konva.Stage({
+      container: document.getElementById('container'),
+      width: width,
+      height: height,
+      draggable: true,
+      fill: 'red',
+    });
+
+    var imageObj = new Image()
+    imageObj.onload = function () {
+       yoda = new Konva.Image({
+        x: 0,
+        y: 0,
+        image: imageObj,
+        width: width,
+        height: height
+      });
+
+      // add the shape to the layer
+      imglayer.add(yoda);
+      imglayer.draw()
+    };
+    imageObj.src = 'http://pic1.win4000.com/wallpaper/c/53cdd1f41226b.jpg';
+
+
+    var imglayer = new Konva.Layer();
+
+
+    var layer = new Konva.Layer();
+    layer.hitGraphEnabled(true)
+    stage.add(layer);
+    stage.add(imglayer);
+    var rect = new Konva.Rect({
+      x: 200,
+      y: 200,
+      width: 100,
+      height: 200,
+      fill: 'transparent',
+      name: 'rect',
+      strokeWidth: 1,
+      stroke: 'black',
+      draggable: true,
+      offset: {
+        x: 50,
+        y: 100
+      },
+      hitStrokeWidth: 20
+    });
+    layer.add(rect);
+    layer.zIndex(2)
+    var text = new Konva.Text({
+      x: 5,
+      y: 5
+    });
+    layer.add(text);
+    updateText();
+
+    let drawRect = function () {
+      let isDrawing = false
+      return {
+        startDrawOne() {
+          var getRealMousePos = function () {
+            var transform = stage
+              .getAbsoluteTransform()
+              .copy();
+            // to detect relative position we need to invert transform
+            transform.invert();
+            return function getRealMousePos() {
+              var pos = stage.getPointerPosition();
+              var circlePos = transform.point(pos);
+              return circlePos
+            }
+          }()
+
+          return new Promise((resolve) => {
+            let mousedownEvent
+            let mousemoveEvent
+            let startPos = null
+            let endPos = null
+            var recttemp
+            stage.on('mousedown ', mousedownEvent = function (e) {
+              if (isDrawing) {
+                isDrawing = false
+
+                stage.off('mousemove', mousemoveEvent)
+                stage.off('mousedown', mousedownEvent)
+                endPos = getRealMousePos()
+                recttemp.width(endPos.x - startPos.x)
+                recttemp.height(endPos.y - startPos.y)
+                layer.draw()
+                resolve({ startPos: startPos, endPos: endPos })
+              }
+              else {
+                isDrawing = true
+
+                startPos = getRealMousePos()
+                recttemp = new Konva.Rect({
+                  x: startPos.x,
+                  y: startPos.y,
+                  fill: 'transparent',
+                  strokeWidth: 1,
+                  stroke: 'black',
+                });
+                layer.add(recttemp)
+
+                stage.on('mousemove ', mousemoveEvent = function (e) {
+                  endPos = getRealMousePos()
+                  recttemp.width(endPos.x - startPos.x)
+                  recttemp.height(endPos.y - startPos.y)
+                  layer.draw()
+                });
+              }
+
+            });
+          })
+        }
+      }
+    }()
+
+    // create new transformer
+    var tr = new Konva.Transformer({
+      node: rect,
+      borderEnabled: false,
+      centeredScaling: false,
+      rotationSnaps: [0, 90, 180, 270],
+      ignoreStroke: false,
+      rotateEnabled: false
+    });
+    layer.add(tr);
+
+    layer.draw();
+
+    rect.on('transformstart', function () {
+      console.log('transform start');
+    });
+
+    rect.on('dragmove', function () {
+      updateText();
+    });
+    rect.on('transform', function () {
+      updateText();
+      console.log('transform');
+    });
+
+    rect.on('transformend', function () {
+      console.log('transform end');
+    });
+
+    function updateText() {
+      var lines = [
+        'x: ' + rect.x(),
+        'y: ' + rect.y(),
+        'rotation: ' + rect.rotation(),
+        'width: ' + rect.width(),
+        'height: ' + rect.height(),
+        'scaleX: ' + rect.scaleX(),
+        'scaleY: ' + rect.scaleY()
+      ];
+      text.text(lines.join('\n'));
+      layer.batchDraw();
+    }
+
+    window.stage = stage
+    window.imglayer = imglayer
+    window.layer = layer
+    
+    window.alog = function(){
+      console.log(`stage absoluteTransform `,stage.getAbsoluteTransform().m)
+      console.log(`layer absoluteTransform `,layer.getAbsoluteTransform().m)
+      console.log(`rect absoluteTransform `,rect.getAbsoluteTransform().m)
+      // console.log(`stage absoluteTransform `,stage.getAbsoluteTransform().m)
+    }
+  </script>
+</body>
+
+</html>

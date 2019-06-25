@@ -16,6 +16,11 @@
   <input id="selectFile" type="file"></input>
   <div id="div" style="background-color: red;height: 100px;width: 100px;"></div>
   <script>
+    Ks3.config.protocol = 'https'
+    Ks3.config.baseUrl = 'ks3.kylin.cloudwalk.work'
+    Ks3.config.AK = 'AKLTU-VNN71MRtaMoQs20EsHsQ'
+    Ks3.config.SK = 'OGzRI22qSVZ4/VCuLrjgR8Xll/I9x5GfTcLVrQ6PQAvvomzWhBEJk8rdaCvcIxokHQ=='
+
     document.getElementById('utp2').onclick = function () {
       var file = document.getElementById('selectFile').files[0]; //获取文件对象
       var objKey = Ks3.encodeKey(file.name);
@@ -27,7 +32,8 @@
         ACL: 'public-read',
         ProgressListener: progressFunction,
         Sinature: '',
-        Bucket:'hehe'
+        region: 'HANGZHOU',
+        Bucket: 'ipd-test-ai'
       }, function (err) {
         if (err) {
           alert(JSON.stringify(err));
@@ -37,11 +43,7 @@
       });
 
       function progressFunction(e) {
-        var progressBar = document.getElementById("progressBar2");
-        if (e.lengthComputable) {
-          progressBar.max = e.total;
-          progressBar.value = e.loaded;
-        }
+        console.log(e)
       }
 
     };
