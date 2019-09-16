@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    yield* 只能迭代迭代器中的yield部分
+    <script>
+      function* g4() {
+        yield* [1, 2, 3];
+        return "foo";
+      }
+
+      var result;
+
+      function* g5() {
+        result = yield* g4();
+        return 'zhaowen'
+      }
+
+      var iterator = g5();
+
+      console.log(iterator.next()); // { value: 1, done: false }
+      console.log(iterator.next()); // { value: 2, done: false }
+      console.log(iterator.next()); // { value: 3, done: false }
+      console.log(iterator.next()); // { value: undefined, done: true },
+      console.log(iterator.next()); // { value: undefined, done: true },
+      // 此时 g4() 返回了 { value: "foo", done: true }
+
+      console.log(result); // "foo"
+    </script>
+  </body>
+</html>

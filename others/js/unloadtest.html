@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function fetchImg() {
+        return new Promise(function(resolve, reject) {
+          var img = new Image();
+          img.src='https://ss1.bdstatic.com/5eN1bjq8AAUYm2zgoY3K/r/www/cache/static/protocol/https/home/img/qrcode/zbios_09b6296.png'
+          img.onload = function() {
+            return img
+          };
+        });
+      }
+
+      window.addEventListener("beforeunload", async function(ev) {
+        fetchImg()
+        console.log(123);
+        // alert(1)
+        // return '1'
+        ev.returnValue = true;
+
+        // ev.preventDefault();
+      });
+    </script>
+  </body>
+</html>
