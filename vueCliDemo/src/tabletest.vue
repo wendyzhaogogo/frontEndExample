@@ -1,61 +1,100 @@
 <template>
-  <el-table :data="tableData"
-            style="width: 100%">
+<div><a-input v-model="a" />
+   <a-table
+        :columns="columns"
+        :rowKey="record => record.name"
+        :dataSource="data"
+        :pagination="false"
+        :loading="loading">
+        <template v-slot:operate="operate,obj">
+          <a-button
+            @click="del(obj)"
+            type="link">删除</a-button>
+        </template>
+        <template v-slot:fieldName="fieldName,obj">
+          <a-input v-model="obj.name" />
+        </template>
+        <template v-slot:sourceField="sourceField,obj">
 
-    <el-table-column width="100px"
-                     show-overflow-tooltip
-                     :label="item.columnLabel"
-                     :key="item.columnKey"
-                     v-for="item in configArr"
-                     :prop="item.columnKey">
-      <template slot="header"
-                slot-scope="{column:{label}}">
-        <el-tooltip class="item"
-                    effect="dark"
-                    :content="label"
-                    placement="top">
-          <div class="headerclass">{{label}}</div>
-        </el-tooltip>
-      </template>
-      <template slot-scope="{row,column:{property},$index}">{{row[property]}}</template>
-    </el-table-column>
-  </el-table>
+          <a-select
+            style="width:100%;"
+            size="default"
+            v-model="obj.sourceMappingName">
+            <a-select-option
+              :key="fieldName"
+              v-for="{fieldName} in sourceFields_set">
+              {{ fieldName }}
+            </a-select-option>
+          </a-select>
+
+        </template>
+        <template v-slot:rule="rule,obj">
+          <a-select
+            style="width:100%;"
+            size="default"
+            v-model="obj.transform">
+            <a-select-option
+              :key="id"
+              v-for="{ruleName,id} in scriptList">
+              {{ ruleName }}
+            </a-select-option>
+          </a-select>
+        </template>
+
+        <template v-slot:is_sync="is_sync,obj">
+          <a-switch
+            defaultChecked
+            v-model="obj.syn" />
+        </template>
+      </a-table>
+      </div>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      configArr: [{
-        columnKey: 'date',
-        columnLabel: 'date1date1date1date1date1'
-      },
-      {
-        columnKey: 'name',
-        columnLabel: 'name1name1name1name1name1name1'
-      },
-      {
-        columnKey: 'address',
-        columnLabel: 'address1'
-      }],
-      tableData: [{
-        date: '2016-05-02',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1518 弄'
-      }, {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄'
-      }, {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1519 弄'
-      }, {
-        date: '2016-05-03',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1516 弄'
-      }],
-      search: ''
+      a:'1',
+      data:[{},{},{},{}],
+   columns: [
+     
+        {
+          title: '同步',
+          dataIndex: 'is_sync',
+          width: 100,
+          // sorter: true,
+
+          scopedSlots: { customRender: 'is_sync' }
+        },
+        {
+          title: '字段名称',
+          dataIndex: 'fieldName',
+          // sorter: true,
+          width: 150,
+          scopedSlots: { customRender: 'fieldName' }
+        },
+        {
+          title: '清洗规则',
+          dataIndex: 'rule',
+          // sorter: true,
+
+          scopedSlots: { customRender: 'rule' }
+        },
+        {
+          title: '对应原字段',
+          dataIndex: 'sourceField',
+          // sorter: true,
+
+          scopedSlots: { customRender: 'sourceField' }
+        },
+        {
+          title: '操作',
+          dataIndex: 'handle',
+          // sorter: true,
+
+          scopedSlots: { customRender: 'operate' }
+        }
+      ]
     }
   },
   methods: {

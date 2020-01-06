@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="p">
+      <div id="c">
+        <div id="cc"></div>
+      </div>
+    </div>
+    <script>
+      a = "";
+      document.getElementById("p").addEventListener(
+        "click",
+        function(e) {
+          // a += "p pop;";
+
+          console.log("p pop");
+          
+        },
+        false
+      );
+      document.getElementById("p").addEventListener(
+        "click",
+        function(e) {
+          // a += "p catch;";
+         
+          console.log("p catch");
+          
+        },
+        true
+      );
+      document.getElementById("c").addEventListener(
+        "click",
+        function(e) {
+          // a += "c pop;";
+     
+          console.log("c pop");
+        },
+        false
+      );
+      document.getElementById("c").addEventListener(
+        "click",
+        function(e) {
+          // a += "c catch;";
+          e.stopPropagation()
+          console.log("c catch");
+        },
+        true
+      );
+      document.getElementById("cc").addEventListener(
+        "click",
+        function(e) {
+          // a += "c catch;";
+         
+          console.log("cc pop");
+        },
+        false
+      );
+      document.getElementById("cc").addEventListener(
+        "click",
+        function(e) {
+          // a += "c catch;";
+         
+          console.log("cc catch");
+        },
+        true
+      );
+    </script>
+    <style>
+      #p {
+        height: 200px;
+        width: 200px;
+        background-color: aqua;
+      }
+
+      #c {
+        height: 100px;
+        width: 100px;
+        background-color: pink;
+      }
+
+      #cc {
+        height: 50px;
+        width: 50px;
+        background-color: red;
+      }
+    </style>
+  </body>
+</html>

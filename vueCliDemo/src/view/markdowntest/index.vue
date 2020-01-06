@@ -1,13 +1,13 @@
 <!--  -->
 <template>
   <div>
-    <mavonEditor></mavonEditor>
+
 
   </div>
 </template>
 
 <script>
-import { mavonEditor } from 'mavon-editor'
+
 export default {
 
   props: {},
@@ -18,7 +18,7 @@ export default {
   },
 
   components: {
-    mavonEditor
+  
   },
 
   computed: {
@@ -31,6 +31,6 @@ export default {
 }
 
 </script>
-<style lang='scss' >
-@import "mavon-editor/dist/css/index.css";
+<style lang='less' >
+
 </style>
