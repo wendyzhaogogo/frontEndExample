@@ -7,6 +7,9 @@
 import io from "socket.io-client";
 export default {
 
+  components: {
+  },
+
   props: {},
 
   data () {
@@ -14,16 +17,10 @@ export default {
     };
   },
 
-  components: {
-  },
-
   computed: {
   },
 
   mounted () { },
-
-  methods: {
-  },
   created () {
     window.io = io
     // let cur = io('/?clientId=c55ee9cc399242db8b608bbb34d31863', { path: '/api/websocket', transports: ['websocket', 'xhr-polling', 'jsonp-polling'] })
@@ -68,6 +65,9 @@ export default {
       console.log('正在重连')
     })
 
+  },
+
+  methods: {
   }
 }
 

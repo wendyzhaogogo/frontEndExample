@@ -5,7 +5,7 @@
   
     <atest>
       <template slot-scope="a">
-        {{awaibu}}
+        {{ awaibu }}
       </template>
     </atest>
 
@@ -17,15 +17,15 @@ import atest from "./atest";
 
 export default {
   name: 'HelloWorld',
+  components: {
+    atest
+  },
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
       awaibu: 'waibu得知'
     }
 
-  },
-  components: {
-    atest
   },
   methods: {
     testlinq () {

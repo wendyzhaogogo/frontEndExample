@@ -1,0 +1,319 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "unknown",
+    "version": "last",
+    "description": "unknown"
+  },
+  "basePath": "",
+  "tags": [
+    {
+      "name": "User",
+      "description": "用户类接口"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/api/user/delete": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "/api/user/delete",
+        "consumes": [
+          "text/plain"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "raw",
+            "in": "body",
+            "description": "raw paramter",
+            "schema": {
+              "type": "string",
+              "format": "binary"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "required": [
+                "code",
+                "data"
+              ],
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "description": "",
+                  "x-enumNames": [
+                    "Success",
+                    "Failure",
+                    "Exception"
+                  ],
+                  "enum": [
+                    200,
+                    400,
+                    500
+                  ],
+                  "$$ref": "#/definitions/HttpResponseTypeCode"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "data": {
+                  "type": "boolean"
+                }
+              },
+              "$$ref": "#/definitions/HttpResponseTypeOfBoolean",
+              "title": "ApiUserDelete"
+            }
+          }
+        }
+      }
+    },
+    "/api/user/update": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "/api/user/update",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ApiUserUpdateBody",
+            "in": "body",
+            "description": "用户",
+            "schema": {
+              "type": "object",
+              "description": "用户",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "主键"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "姓名"
+                },
+                "password": {
+                  "type": "string",
+                  "description": "密码"
+                },
+                "createTime": {
+                  "type": "string",
+                  "description": "创建日期",
+                  "format": "date-time"
+                }
+              },
+              "$$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "required": [
+                "code",
+                "data"
+              ],
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "description": "",
+                  "x-enumNames": [
+                    "Success",
+                    "Failure",
+                    "Exception"
+                  ],
+                  "enum": [
+                    200,
+                    400,
+                    500
+                  ],
+                  "$$ref": "#/definitions/HttpResponseTypeCode"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "data": {
+                  "type": "boolean"
+                }
+              },
+              "$$ref": "#/definitions/HttpResponseTypeOfBoolean",
+              "title": "ApiUserUpdate"
+            }
+          }
+        }
+      }
+    },
+    "/api/user/add": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "新增用户",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "ApiUserAddBody",
+            "in": "body",
+            "description": "用户",
+            "schema": {
+              "type": "object",
+              "description": "用户",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "主键"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "姓名"
+                },
+                "password": {
+                  "type": "string",
+                  "description": "密码"
+                },
+                "createTime": {
+                  "type": "string",
+                  "description": "创建日期",
+                  "format": "date-time"
+                }
+              },
+              "$$ref": "#/definitions/User"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "required": [
+                "code"
+              ],
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "description": "",
+                  "x-enumNames": [
+                    "Success",
+                    "Failure",
+                    "Exception"
+                  ],
+                  "enum": [
+                    200,
+                    400,
+                    500
+                  ],
+                  "$$ref": "#/definitions/HttpResponseTypeCode"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "data": {
+                  "type": "string"
+                }
+              },
+              "$$ref": "#/definitions/HttpResponseTypeOfString",
+              "title": "ApiUserAdd"
+            }
+          }
+        }
+      }
+    },
+    "/api/user/getById": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "根据用户id获取用户信息",
+        "consumes": [
+          "text/plain"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "description": "主键id",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "object",
+              "required": [
+                "code"
+              ],
+              "properties": {
+                "code": {
+                  "type": "number",
+                  "description": "",
+                  "x-enumNames": [
+                    "Success",
+                    "Failure",
+                    "Exception"
+                  ],
+                  "enum": [
+                    200,
+                    400,
+                    500
+                  ],
+                  "$$ref": "#/definitions/HttpResponseTypeCode"
+                },
+                "message": {
+                  "type": "string"
+                },
+                "data": {
+                  "type": "object",
+                  "description": "用户",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "主键"
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "姓名"
+                    },
+                    "password": {
+                      "type": "string",
+                      "description": "密码"
+                    },
+                    "createTime": {
+                      "type": "string",
+                      "description": "创建日期",
+                      "format": "date-time"
+                    }
+                  },
+                  "$$ref": "#/definitions/User"
+                }
+              },
+              "$$ref": "#/definitions/HttpResponseTypeOfUser",
+              "title": "ApiUserGetById"
+            }
+          }
+        }
+      }
+    }
+  }
+}

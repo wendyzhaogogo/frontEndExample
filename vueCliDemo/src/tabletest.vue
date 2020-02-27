@@ -1,62 +1,62 @@
 <template>
-<div><a-input v-model="a" />
-   <a-table
-        :columns="columns"
-        :rowKey="record => record.name"
-        :dataSource="data"
-        :pagination="false"
-        :loading="loading">
-        <template v-slot:operate="operate,obj">
-          <a-button
-            @click="del(obj)"
-            type="link">删除</a-button>
-        </template>
-        <template v-slot:fieldName="fieldName,obj">
-          <a-input v-model="obj.name" />
-        </template>
-        <template v-slot:sourceField="sourceField,obj">
+  <div><a-input v-model="a" />
+    <a-table
+      :columns="columns"
+      :row-key="record => record.name"
+      :data-source="data"
+      :pagination="false"
+      :loading="loading">
+      <template v-slot:operate="operate,obj">
+        <a-button
+          type="link"
+          @click="del(obj)">删除</a-button>
+      </template>
+      <template v-slot:fieldName="fieldName,obj">
+        <a-input v-model="obj.name" />
+      </template>
+      <template v-slot:sourceField="sourceField,obj">
 
-          <a-select
-            style="width:100%;"
-            size="default"
-            v-model="obj.sourceMappingName">
-            <a-select-option
-              :key="fieldName"
-              v-for="{fieldName} in sourceFields_set">
-              {{ fieldName }}
-            </a-select-option>
-          </a-select>
+        <a-select
+          v-model="obj.sourceMappingName"  
+          style="width:100%;"
+          size="default">
+          <a-select-option
+            v-for="{fieldName} in sourceFields_set"
+            :key="fieldName">
+            {{ fieldName }}
+          </a-select-option>
+        </a-select>
 
-        </template>
-        <template v-slot:rule="rule,obj">
-          <a-select
-            style="width:100%;"
-            size="default"
-            v-model="obj.transform">
-            <a-select-option
-              :key="id"
-              v-for="{ruleName,id} in scriptList">
-              {{ ruleName }}
-            </a-select-option>
-          </a-select>
-        </template>
+      </template>
+      <template v-slot:rule="rule,obj">
+        <a-select
+          v-model="obj.transform"
+          style="width:100%;"
+          size="default">
+          <a-select-option
+            v-for="{ruleName,id} in scriptList"
+            :key="id">
+            {{ ruleName }}
+          </a-select-option>
+        </a-select>
+      </template>
 
-        <template v-slot:is_sync="is_sync,obj">
-          <a-switch
-            defaultChecked
-            v-model="obj.syn" />
-        </template>
-      </a-table>
-      </div>
+      <template v-slot:is_sync="is_sync,obj">
+        <a-switch
+          v-model="obj.syn"
+          default-checked />
+      </template>
+    </a-table>
+  </div>
 </template>
 
 <script>
 export default {
-  data() {
+  data () {
     return {
-      a:'1',
-      data:[{},{},{},{}],
-   columns: [
+      a: '1',
+      data: [{},{},{},{}], 
+      columns: [
      
         {
           title: '同步',
@@ -104,7 +104,7 @@ export default {
     handleDelete(index, row) {
       console.log(index, row);
     }
-  },
+  }
 }
 </script>
 <style >

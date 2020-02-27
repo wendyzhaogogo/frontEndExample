@@ -92,7 +92,7 @@ Vue.use(notification)
 Vue.use(Pagination)
 Vue.use(Empty)
 
-Vue.prototype.$confirm = Modal.confirm
+ Vue.prototype.$confirm = Modal.confirm   
 Vue.prototype.$message = message
 Vue.prototype.$notification = notification
 Vue.prototype.$info = Modal.info

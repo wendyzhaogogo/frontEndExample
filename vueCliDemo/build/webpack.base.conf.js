@@ -14,8 +14,9 @@ const createLintingRule = () => ({
   enforce: 'pre',
   include: [resolve('src'), resolve('test')],
   options: {
-    formatter: require('eslint-friendly-formatter'),
-    emitWarning: !config.dev.showEslintErrorsInOverlay
+    fix:true,   
+    emitWarning: true,
+    // eslintPath: path.join(__dirname,'..','node_modules',"eslint")
   }
 })
 
@@ -40,7 +41,7 @@ module.exports = {
   },
   module: {
     rules: [
-      ...(config.dev.useEslint ? [createLintingRule()] : []),
+      createLintingRule(),
       {
         test: /\.vue$/,
         loader: 'vue-loader',

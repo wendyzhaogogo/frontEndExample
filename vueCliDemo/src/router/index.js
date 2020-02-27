@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
-import test from '@/components/test.vue'
+
 import sockettest from "@/components/sockettest";
 import tabletest from "@/tabletest";
 import markdowntest from "@/view/markdowntest";

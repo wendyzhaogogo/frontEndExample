@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <a-button type="primary"></a-button>
+    <a-button type="primary"/>
     <router-view/>
   </div>
 </template>
@@ -10,7 +10,7 @@
 import test from "./test";
 console.log('app beforeexport')
 console.log(test.a())
-
+var a = 1
 export default {
   name: 'App',
   mounted(){
