@@ -7,7 +7,6 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Demo</title>
   <script src="lib/vue.js"></script>
-  <script src="https://cdn.bootcss.com/element-ui/2.6.1/index.js"></script>
   <script src="js/components.js"></script>
   <script src="js/index.js"></script>
 </head>
@@ -20,10 +19,11 @@
 <body>
   <div id="app">
     <!-- <span>{{name}}</span> -->
-    <input type="button" value="点我" @click="clickme()">
-    <el-input v-model="eee.b"></el-input>
-    <my-component ref="hehe" :prop1="name"></my-component>
-
+    <!-- <input type="button" value="点我" @click="clickme()"> -->
+    <my-component >
+      <template v-slot:slot1="obj"><p>hehela</p></template>
+    </my-component>
+    <p></p>
   </div>
 
 </body>

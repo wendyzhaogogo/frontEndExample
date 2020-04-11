@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/rxjs/6.5.4/rxjs.umd.js"></script>
+  </head>
+  <body>
+    <script>
+      var debounce = rxjs.operators.debounce;
+      var timer = rxjs.timer;
+      var Subject = rxjs.Subject
+
+
+      var sub0 = new Subject();
+      var suba = new Subject()
+      var subb = suba.pipe(debounce(() => timer(500)));
+      
+      sub0.subscribe((res)=>{
+        suba.next(res)
+      })
+
+
+      suba.subscribe({
+        next(res) {
+          console.log("suba  " + res);
+        },
+      });
+      subb.subscribe({
+        next(res) {
+          console.log("subb  " + res);
+        },
+      });
+      suba.unsubscribe()
+      sub0.next(123);
+    </script>
+  </body>
+</html>

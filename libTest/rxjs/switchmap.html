@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.bootcss.com/rxjs/6.5.4/rxjs.umd.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      var switchMap = rxjs.operators.switchMap
+      var fromEvent = rxjs.fromEvent
+      var interval = rxjs.interval
+      var clicks =fromEvent(document, "click");
+      var result =clicks.pipe(switchMap((ev) => interval(1000)))
+      result.subscribe((x) => console.log(x));
+    </script>
+  </body>
+</html>

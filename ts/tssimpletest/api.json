@@ -1,258 +1,34 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "unknown",
+    "title": "ai工厂后端",
     "version": "last",
     "description": "unknown"
   },
-  "basePath": "",
+  "basePath": "/cw_labelling",
   "tags": [
     {
-      "name": "User",
-      "description": "用户类接口"
+      "name": "公共分类",
+      "description": "公共分类"
     }
   ],
   "schemes": [
     "http"
   ],
   "paths": {
-    "/api/user/delete": {
-      "post": {
-        "tags": [
-          "User"
-        ],
-        "summary": "/api/user/delete",
-        "consumes": [
-          "text/plain"
-        ],
-        "parameters": [
-          {
-            "name": "id",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "raw",
-            "in": "body",
-            "description": "raw paramter",
-            "schema": {
-              "type": "string",
-              "format": "binary"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "type": "object",
-              "required": [
-                "code",
-                "data"
-              ],
-              "properties": {
-                "code": {
-                  "type": "number",
-                  "description": "",
-                  "x-enumNames": [
-                    "Success",
-                    "Failure",
-                    "Exception"
-                  ],
-                  "enum": [
-                    200,
-                    400,
-                    500
-                  ],
-                  "$$ref": "#/definitions/HttpResponseTypeCode"
-                },
-                "message": {
-                  "type": "string"
-                },
-                "data": {
-                  "type": "boolean"
-                }
-              },
-              "$$ref": "#/definitions/HttpResponseTypeOfBoolean",
-              "title": "ApiUserDelete"
-            }
-          }
-        }
-      }
-    },
-    "/api/user/update": {
-      "post": {
-        "tags": [
-          "User"
-        ],
-        "summary": "/api/user/update",
-        "consumes": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "ApiUserUpdateBody",
-            "in": "body",
-            "description": "用户",
-            "schema": {
-              "type": "object",
-              "description": "用户",
-              "properties": {
-                "id": {
-                  "type": "string",
-                  "description": "主键"
-                },
-                "name": {
-                  "type": "string",
-                  "description": "姓名"
-                },
-                "password": {
-                  "type": "string",
-                  "description": "密码"
-                },
-                "createTime": {
-                  "type": "string",
-                  "description": "创建日期",
-                  "format": "date-time"
-                }
-              },
-              "$$ref": "#/definitions/User"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "type": "object",
-              "required": [
-                "code",
-                "data"
-              ],
-              "properties": {
-                "code": {
-                  "type": "number",
-                  "description": "",
-                  "x-enumNames": [
-                    "Success",
-                    "Failure",
-                    "Exception"
-                  ],
-                  "enum": [
-                    200,
-                    400,
-                    500
-                  ],
-                  "$$ref": "#/definitions/HttpResponseTypeCode"
-                },
-                "message": {
-                  "type": "string"
-                },
-                "data": {
-                  "type": "boolean"
-                }
-              },
-              "$$ref": "#/definitions/HttpResponseTypeOfBoolean",
-              "title": "ApiUserUpdate"
-            }
-          }
-        }
-      }
-    },
-    "/api/user/add": {
-      "post": {
-        "tags": [
-          "User"
-        ],
-        "summary": "新增用户",
-        "consumes": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "ApiUserAddBody",
-            "in": "body",
-            "description": "用户",
-            "schema": {
-              "type": "object",
-              "description": "用户",
-              "properties": {
-                "id": {
-                  "type": "string",
-                  "description": "主键"
-                },
-                "name": {
-                  "type": "string",
-                  "description": "姓名"
-                },
-                "password": {
-                  "type": "string",
-                  "description": "密码"
-                },
-                "createTime": {
-                  "type": "string",
-                  "description": "创建日期",
-                  "format": "date-time"
-                }
-              },
-              "$$ref": "#/definitions/User"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "type": "object",
-              "required": [
-                "code"
-              ],
-              "properties": {
-                "code": {
-                  "type": "number",
-                  "description": "",
-                  "x-enumNames": [
-                    "Success",
-                    "Failure",
-                    "Exception"
-                  ],
-                  "enum": [
-                    200,
-                    400,
-                    500
-                  ],
-                  "$$ref": "#/definitions/HttpResponseTypeCode"
-                },
-                "message": {
-                  "type": "string"
-                },
-                "data": {
-                  "type": "string"
-                }
-              },
-              "$$ref": "#/definitions/HttpResponseTypeOfString",
-              "title": "ApiUserAdd"
-            }
-          }
-        }
-      }
-    },
-    "/api/user/getById": {
+    "/labeltask/operation/panel": {
       "get": {
         "tags": [
-          "User"
+          "公共分类"
         ],
-        "summary": "根据用户id获取用户信息",
-        "consumes": [
-          "text/plain"
-        ],
+        "summary": "查看数据集配置",
+        "description": "只有写了注释的字段是有用的，其它的是直接导入json生成的",
         "parameters": [
           {
             "name": "id",
             "in": "query",
-            "required": false,
-            "description": "主键id",
+            "required": true,
+            "description": "数据集id",
             "type": "string"
           }
         ],
@@ -260,56 +36,290 @@
           "200": {
             "description": "successful operation",
             "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
               "type": "object",
-              "required": [
-                "code"
-              ],
               "properties": {
                 "code": {
                   "type": "number",
-                  "description": "",
-                  "x-enumNames": [
-                    "Success",
-                    "Failure",
-                    "Exception"
-                  ],
-                  "enum": [
-                    200,
-                    400,
-                    500
-                  ],
-                  "$$ref": "#/definitions/HttpResponseTypeCode"
+                  "description": "状态码"
                 },
                 "message": {
-                  "type": "string"
+                  "type": "string",
+                  "description": "消息"
                 },
                 "data": {
                   "type": "object",
-                  "description": "用户",
                   "properties": {
-                    "id": {
-                      "type": "string",
-                      "description": "主键"
+                    "situation": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "description": "数据集名"
+                        },
+                        "totalCount": {
+                          "type": "number"
+                        },
+                        "doneCount": {
+                          "type": "number",
+                          "description": "已完成"
+                        },
+                        "dealingCount": {
+                          "type": "number"
+                        },
+                        "toArrangeCount": {
+                          "type": "number"
+                        },
+                        "labelInfoList": {
+                          "type": "null"
+                        }
+                      },
+                      "description": "当前状况"
                     },
-                    "name": {
-                      "type": "string",
-                      "description": "姓名"
+                    "taskType": {
+                      "type": "number",
+                      "description": "任务类型id"
                     },
-                    "password": {
-                      "type": "string",
-                      "description": "密码"
+                    "template": {
+                      "type": "object",
+                      "properties": {
+                        "value": {
+                          "type": "array",
+                          "items": {
+                            "type": "object",
+                            "properties": {
+                              "value": {
+                                "type": "null"
+                              },
+                              "name": {
+                                "type": "string",
+                                "description": "类型名称"
+                              },
+                              "shortKey": {
+                                "type": "string",
+                                "description": "快捷键"
+                              },
+                              "tag": {
+                                "type": "null"
+                              }
+                            },
+                            "required": [
+                              "value",
+                              "name",
+                              "shortKey",
+                              "tag"
+                            ]
+                          },
+                          "description": "框类型配置数组"
+                        },
+                        "name": {
+                          "type": "null"
+                        },
+                        "picUrl": {
+                          "type": "null"
+                        }
+                      },
+                      "description": "部分配置对象"
                     },
-                    "createTime": {
-                      "type": "string",
-                      "description": "创建日期",
-                      "format": "date-time"
+                    "reason": {
+                      "type": "null"
+                    },
+                    "orderPointThreshold": {
+                      "type": "number"
+                    },
+                    "isViewCourse": {
+                      "type": "number"
+                    },
+                    "picUrlUpdateCount": {
+                      "type": "number"
+                    },
+                    "sizeType": {
+                      "type": "number"
+                    },
+                    "isFrameRelated": {
+                      "type": "number",
+                      "description": "是否为有关联框场景"
+                    },
+                    "supportIgnoreArea": {
+                      "type": "number",
+                      "description": "是否支持忽略区"
+                    },
+                    "labelInfoList": {
+                      "type": "null"
                     }
                   },
-                  "$$ref": "#/definitions/User"
+                  "description": "返回结果"
                 }
               },
-              "$$ref": "#/definitions/HttpResponseTypeOfUser",
-              "title": "ApiUserGetById"
+              "description": "响应",
+              "title": "LabeltaskOperationPanel"
+            }
+          }
+        }
+      }
+    },
+    "/labeltask/operation/update": {
+      "post": {
+        "tags": [
+          "公共分类"
+        ],
+        "summary": "标注操作-提交-多类多框",
+        "description": "新建标注\n地址：\t/labeltask/operation/update\n修改点：\tlabelResult: [ { name: '', groupId: '' }, { name: '忽略区' ，coordinates： [ 多个点坐标，顺时针] } ]\nTIPS:   \t标签 对应的result 新增groupId，标识哪些框属于同一组\n忽略区tab的名字由前端自定义，可以不假groupId\n\n<br>\n标注结果\n地址：\t/labeltask/operation/files\n修改点：\toperationFileDTOS： [ { labelResult: \"[ { name: '', groupId: '' } ]\"  } ]\nTIPS:\t标注结果的返回增加对应的groupId字段\n\n<br>\n新建任务:\n地址：\t/labeltask/create\n修改点：\tclassify: { name: '', value: [{name:'',shortKey:''}]}\nTIPS:\t标签同级新增 shortKey 字段，存储快捷键\n框关联和支持忽略区对应独自的字段\n\n标注详情：\n地址：\t/labeltask/operation/panel\n修改点：\ttemplate: {value:[ {name: '', shortKey: ''} ]}\nTIPS:\t标签同级返回快捷键 shortKey",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "LabeltaskOperationUpdateBody",
+            "in": "body",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "taskId": {
+                  "type": "string",
+                  "description": "任务id，直接取自标注对象",
+                  "mock": {
+                    "mock": "@guid"
+                  }
+                },
+                "isWaitMarker": {
+                  "type": "integer",
+                  "description": "是否待标保存 1为待标保存 0为提交保存"
+                },
+                "fileId": {
+                  "type": "string",
+                  "description": "文件id，直接取自标注对象",
+                  "mock": {
+                    "mock": "@guid"
+                  }
+                },
+                "partitionId": {
+                  "type": "string",
+                  "description": "批次id，直接取partitionDO.id",
+                  "mock": {
+                    "mock": "@guid"
+                  }
+                },
+                "version": {
+                  "type": "string",
+                  "description": "版本号，每次提交需在当前版本下加一，后端用户对并发场景做数据取舍",
+                  "mock": {
+                    "mock": "@integer"
+                  }
+                },
+                "labelResult": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "description": "类名（多类多抗的类型名）"
+                      },
+                      "groupId": {
+                        "type": "integer",
+                        "description": "组id，有关联框标注场景必填，无关联场景不填"
+                      },
+                      "coordinates": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "axisX": {
+                              "type": "number",
+                              "description": "横坐标"
+                            },
+                            "axisY": {
+                              "type": "number",
+                              "description": "纵坐标"
+                            },
+                            "source": {
+                              "type": "integer",
+                              "description": "赋值0  说明：是否非用户创建的数据：1是 0不是"
+                            }
+                          },
+                          "required": [
+                            "axisX",
+                            "axisY",
+                            "source"
+                          ]
+                        }
+                      }
+                    },
+                    "required": [
+                      "name",
+                      "coordinates"
+                    ]
+                  },
+                  "description": "标注结果对象"
+                },
+                "ignoreArea": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "coordinates": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "axisX": {
+                              "type": "number",
+                              "description": "横坐标"
+                            },
+                            "axisY": {
+                              "type": "number",
+                              "description": "纵坐标"
+                            }
+                          },
+                          "required": [
+                            "axisX",
+                            "axisY"
+                          ],
+                          "description": "坐标"
+                        },
+                        "description": "忽略区单元的坐标集"
+                      }
+                    },
+                    "required": [
+                      "coordinates"
+                    ],
+                    "description": "忽略区单元"
+                  },
+                  "description": "忽略区集"
+                }
+              },
+              "required": [
+                "isWaitMarker",
+                "taskId",
+                "fileId",
+                "partitionId",
+                "version",
+                "labelResult",
+                "ignoreArea"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$schema": "http://json-schema.org/draft-04/schema#",
+              "type": "object",
+              "properties": {
+                "code": {
+                  "type": "number"
+                },
+                "data": {
+                  "type": "null"
+                },
+                "message": {
+                  "type": "string"
+                }
+              },
+              "title": "LabeltaskOperationUpdate"
             }
           }
         }

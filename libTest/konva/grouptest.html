@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- USE DEVELOPMENT VERSION -->
+    <script src="https://unpkg.com/konva@3.3.3/konva.js"></script>
+    <meta charset="utf-8" />
+    <title>Konva Transform Events Demo</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        background-color: #f0f0f0;
+      }
+
+      #container canvas {
+        background-color: lightcyan;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="container"></div>
+    <script>
+      var stage = new Konva.Stage({
+        container: document.getElementById("container"),
+        width: 800,
+        height: 800,
+        draggable: true
+      });
+
+      var layer = new Konva.Layer();
+      stage.add(layer);
+      debugger;
+      var group = new Konva.Shape({
+        x: 0,
+        y: 0,
+        width: 50,
+        height: 50,
+        background: "blue",
+        sceneFunc() {
+          debugger;
+        }
+      });
+      layer.add(group);
+      var rect = new Konva.Rect({
+        x: 100,
+        y: 100,
+        width: 100,
+        height: 100,
+        fill: "red"
+      });
+      group.add(rect);
+
+      layer.on("mousemove", function() {
+        Console.log(1);
+      });
+    </script>
+  </body>
+</html>
