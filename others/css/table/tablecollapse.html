@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      *{
+        box-sizing: border-box;
+      }
+      .table {
+        table-layout: fixed;
+        border-collapse: separate;
+        border:5px solid red;
+      }
+
+      .table tr{
+        height: 50px;
+      }
+
+      td,th {
+        
+        border:5px solid red;
+      }
+    </style>
+    <table class="table">
+      <colgroup>
+        <col width="120" />
+        <col width="130" />
+        <col width="140" />
+      </colgroup>
+      <thead>
+        <tr>
+          <th>
+            表头1
+          </th>
+          <th>
+            表头2
+          </th>
+          <th>
+            表头3
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>2</td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>2</td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>2</td>
+          <td>3</td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

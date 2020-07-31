@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <script>
+      缓存尝试，仍然失败
+      var cache = {}
+      function getfeibo(x) {
+        if (x === 1 || x === 2) {
+          return 1;
+        } 
+        else {
+          let result =  cache[x];
+          if(!result){
+            result = cache[x] = getfeibo(x - 1) + getfeibo(x - 2)
+          }
+          return result
+        }
+      }
+      console.log(getfeibo(10000))
+    </script> -->
+
+    <!-- <script>
+      宏任务尝试、耗时太长
+      function factorial222(n) {
+        var res = 1;
+        return new Promise((r, j) => {
+          function factorial(n) {
+            if (n === 1) r(res);
+            res = res * n;
+            setTimeout(() => {
+              factorial(n - 1);
+            });
+          }
+          factorial(n)
+        });
+      }
+
+      factorial222(999).then((r) => {
+        console.log(r);
+      });
+    </script> -->
+
+    <!-- <script>
+      "use strict"
+      function factorial(n, total = 1) {
+        if (n === 1) return total;
+        return factorial(n - 1,n * total);
+      }
+
+      console.log(factorial(99999));
+    </script> -->
+
+    <script>
+      function getFeibo(x) {
+        var cache = {
+          1: new BigNum(1),
+          2: new BigNum(1),
+        };
+        for (var i = 3; i <= x; i++) {
+          cache[i] = BigNum.Add(cache[i - 2], cache[i - 1]);
+        }
+        return cache[x].getResult();
+      }
+
+      class BigNum {
+        static digit = 12; //存储单元位数
+        static unit = Math.pow(10, this.digit);
+        _numStrArr = [];
+        constructor(x) {
+          if (x instanceof Array) {
+            this._numStrArr = x;
+          } else {
+            const str = x.toString();
+            let r = [];
+            for (let i = str.length; i >= 0; i -= BigNum.digit) {
+              r.unshift(parseInt(str.slice(Math.max(i - BigNum.digit, 0), i)));
+            }
+
+            this._numStrArr = r;
+          }
+        }
+
+        static Add(x, y) {
+          var xarr = [...x._numStrArr];
+          var yarr = [...y._numStrArr];
+          var looparr;
+          var otherarr;
+          if (xarr.length > yarr.length) {
+            looparr = xarr;
+            otherarr = yarr;
+          } else {
+            looparr = yarr;
+            otherarr = xarr;
+          }
+          var newarr = [];
+          var len = looparr.length;
+          for (var i = 0; i < len; i++) {
+            let loopunit = looparr.pop();
+            let otherunit = otherarr.pop();
+            newarr.unshift(otherunit ? loopunit + otherunit : loopunit);
+          }
+
+          newarr = newarr.reverse();
+          var i = 0;
+          while (i <= newarr.length - 1) {
+            if (newarr[i] >= BigNum.unit) {
+              var left = newarr[i] % BigNum.unit;
+              newarr[i + 1] = newarr[i + 1] ? newarr[i + 1] : 0;
+              newarr[i + 1] += (newarr[i] - left) / BigNum.unit;
+              newarr[i] = left;
+            }
+            i++;
+          }
+
+          return new BigNum(newarr.reverse());
+        }
+
+        static Multiply(x, y) {
+          var xarr = [...x._numStrArr];
+          var yarr = [...y._numStrArr];
+          var looparr;
+          var otherarr;
+          if (xarr.length > yarr.length) {
+            looparr = xarr;
+            otherarr = yarr;
+          } else {
+            looparr = yarr;
+            otherarr = xarr;
+          }
+          var newarr = [];
+          var len = looparr.length;
+          for (var i = 0; i < len; i++) {
+            let loopunit = looparr.pop();
+            let otherunit = otherarr.pop();
+            newarr.unshift(otherunit ? loopunit + otherunit : loopunit);
+          }
+
+          newarr = newarr.reverse();
+          var i = 0;
+          while (i <= newarr.length - 1) {
+            if (newarr[i] >= BigNum.unit) {
+              var left = newarr[i] % BigNum.unit;
+              newarr[i + 1] = newarr[i + 1] ? newarr[i + 1] : 0;
+              newarr[i + 1] += (newarr[i] - left) / BigNum.unit;
+              newarr[i] = left;
+            }
+            i++;
+          }
+
+          return new BigNum(newarr.reverse());
+        }
+
+        getResult() {
+          return this._numStrArr.join("");
+        }
+      }
+      var a = getFeibo(10000);
+      console.log(a);
+    </script>
+  </body>
+</html>

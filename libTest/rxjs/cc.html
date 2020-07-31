@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/rxjs/7.0.0-alpha.0/rxjs.umd.js"></script>
+    <script>
+      Observable = rxjs.Observable;
+      const ob = new Observable((subscribe) => {
+        setInterval(() => {
+          console.log('subscribenext')
+          subscribe.next(111);
+        }, 1000);
+      });
+
+      ob.subscribe((observer) => console.log(observer));
+      // ob.subscribe((observer) => console.log(observer));
+      // ob.subscribe((observer) => console.log(observer));
+      // ob.subscribe((observer) => console.log(observer));
+    </script>
+  </body>
+</html>

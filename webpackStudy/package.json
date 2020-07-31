@@ -4,9 +4,14 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "ttt":"node app.js"
+    "dev": "webpack --config ./config/webpack.dev.config.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "webpack": "^4.44.0"
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.3.12"
+  }
 }

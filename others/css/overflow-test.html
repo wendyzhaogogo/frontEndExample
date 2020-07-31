@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="tips">
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      上述规则的省略号，
+      出现时机是在若干行内或行内块元素，在一行排列时，超出了父元素的宽度。（父元素可以是行内块也可以是块）
+      只会在样式直接子级出现省略号。、
+      但是，当变成省略号的直接子级内部有不是static的元素时，内部元素会显示出来
+    </div>
+    <div class="div">
+      <div class="span"></div>
+      <a class="text">
+        <span class="inner-span"></span>
+        <span class="inner-span"></span>
+        123456789
+      </a>
+    </div>
+  </body>
+  <style>
+    * {
+      font-family: "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial,
+        sans-serif;
+    }
+    .div {
+      height: 100px;
+      width: 200px;
+      display: inline-block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      background-color: pink;
+      white-space: nowrap;
+    }
+    .span {
+      background-color: red;
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+    }
+    .text {
+      display: inline-block;
+    }
+    .inner-span{
+      position: relative;
+      background-color: red;
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+    }
+  </style>
+</html>

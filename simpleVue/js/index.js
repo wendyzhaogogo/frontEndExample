@@ -1,44 +1,40 @@
 window.onload = function () {
   new Vue({
-    el: '#app',
-    data () {
+    el: "#app",
+    data() {
       return {
         name: {
           value: 1,
-          value2: 0
+          value2: 0,
         },
         test: "test",
-        eee: {
-
-        }
-      }
+        eee: {},
+      };
     },
     mounted: function () {
-      let _this = this
-      this.eee.a = 2
-
+      let _this = this;
+      this.eee.a = 2;
     },
     methods: {
-      clickme () {
-        let _this = this
+      clickme() {
+        let _this = this;
         // console.log(this)
-
-        this.name.value += 1
-        this.$nextTick(function () {
-          console.log('nexttick')
-        })
+        console.log(arguments);
+        // this.name.value += 1;
+        // this.$nextTick(function () {
+        //   console.log("nexttick");
+        // });
 
         // alert("我被点击啦")
       },
-
     },
     watch: {
-      value () {
-        this.value2 += 1
+      value() {
+        this.value2 += 1;
       },
-      value2 () {
-        this.value += 1
-      }
-    }
-  })
-}
+      value2() {
+        this.value += 1;
+      },
+    },
+  });
+};

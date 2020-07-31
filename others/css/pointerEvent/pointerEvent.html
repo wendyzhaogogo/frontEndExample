@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    https://developer.mozilla.org/zh-CN/docs/Web/CSS/pointer-events
+    <div id="a" style="height: 200px; width: 200px; background-color: red;pointer-events: none;">
+      <div id="b" style="height: 100px; width: 100px; background-color: yellow;pointer-events: auto;"></div>
+    </div>
+    a上其它部分事件不会触发,b的会
+    <script>
+      document.getElementById("a").addEventListener("click",function(){
+        console.log("a",arguments)
+      })
+      document.getElementById("b").addEventListener("click",function(){
+        console.log("b",arguments)
+      })
+    </script>
+  </body>
+</html>
