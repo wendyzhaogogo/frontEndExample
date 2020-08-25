@@ -4,17 +4,41 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    
   </head>
   <body>
-    <div id="abc">     
-      <p class='<div class="b"></div>'></p>
+    <!-- <div id="abc">     
+      <p class='<div class="b" c="b"></div>'></p>
+      <p><a href=""></a></p>
+    </div> -->
+    <div id="abc">
+      <p class="abc"></p>
       <p><a href=""></a></p>
     </div>
     <script>
-      function checkXmlClose(xmlStr) {
-        
+      class VNode {
+        tag = "";
+        children = [];
+        constructor(tag) {
+          this.tag = tag;
+        }
+        addChild(child) {
+          this.children.push(child);
+        }
       }
+
+      function parseHtml(xmlStr) {
+        var reg = /<(?!.*[<>].*)(\S+).*>/g;
+        console.log(reg.exec(xmlStr));
+        console.log(reg.exec(xmlStr));
+        console.log(reg.exec(xmlStr));
+      }
+
+      function getNextTag() {}
+
+      var testHtml = document.getElementById("abc").outerHTML;
+
+      var r = parseHtml(testHtml);
+      console.log(r);
     </script>
   </body>
 </html>
